@@ -1,0 +1,22 @@
+<%= render "shared/header" %>
+<h2 class="p-1">シラバス 検索結果</h2>
+
+<div class='search-result p-1'>
+<% if @results.length !=0 %>
+  <% @results.each do |result| %>
+    <h3><%= result.subject_title %></h3>
+    <p >曜日: <%= result.weekday %></p>
+    <p >時限: <%= result.period %></p>
+    <p >教授名: <%= result.teacher.name %></p>
+    <% result.lectures.each_with_index do |lecture,i| %>
+                <ul>
+                    <li><strong><%= "第#{i+1}回: "%><%= lecture.lecture_title %></strong></li>
+                </ul>
+            <% end %>
+  </div>
+   <% end %>
+   <% else %>
+  該当する講義はありません
+<% end %>
+</div>
+<%= link_to 'トップページへ戻る', root_path %>

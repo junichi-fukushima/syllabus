@@ -1,0 +1,24 @@
+<%= render "shared/header" %>
+<h2 class="p-1">シラバス 検索</h2>
+<%= search_form_for @p, class: 'search-form py-2',url: subjects_search_path do |f| %>
+<div class='form-wrap row'>
+<div class="form-group row p-1 align-items-center">
+  <%= f.label :subject_title_eq, '授業名' %>
+  <%= f.search_field :subject_title_cont %>
+</div>  
+  <br>
+  <div class='register-btn t-center p-1 align-items-center'>
+  <%= f.submit '検索' %>
+  </div>
+</div>  
+<% end %>
+<section class="card my-1 ">
+ <% @subjects.each do |subject| %>
+  <div class="card-content">
+    <h2 class="card-title"><%= subject.subject_title %></h2>
+    <p class="card-text">曜日: <%= subject.weekday %></p>
+    <p class="card-text">時限: <%= subject.period %></p>
+    <p class="card-text">教授名: <%= subject.teacher.name %></p>
+  </div>
+   <% end %>
+</section>

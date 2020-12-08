@@ -1,0 +1,141 @@
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (64.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS `syllabus_test`[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE DATABASE `syllabus_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `lectures` CASCADE[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCREATE TABLE `lectures` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `lecture_title` varchar(255) NOT NULL, `lecture_date` date NOT NULL, `subject_id` bigint, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL,  INDEX `index_lectures_on_subject_id`  (`subject_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `subjects` CASCADE[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE `subjects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `subject_title` varchar(255) NOT NULL, `weekday` varchar(255) NOT NULL, `period` int NOT NULL, `teacher_id` bigint, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL,  INDEX `index_subjects_on_teacher_id`  (`teacher_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `teachers` CASCADE[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE `teachers` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (54.9ms)[0m  [1m[35mALTER TABLE `lectures` ADD CONSTRAINT `fk_rails_f6f384a8db`
+FOREIGN KEY (`subject_id`)
+  REFERENCES `subjects` (`id`)
+[0m
+  [1m[35m (21.3ms)[0m  [1m[35mALTER TABLE `subjects` ADD CONSTRAINT `fk_rails_cac7f2be05`
+FOREIGN KEY (`teacher_id`)
+  REFERENCES `teachers` (`id`)
+[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (5.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20201201233756)[0m
+  [1m[35m (1.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20201201233738),
+(20201201233749);
+
+[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2020-12-05 08:16:55.566019', '2020-12-05 08:16:55.566019')[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '2105d13c86a7ab271f33646c03589ea9df9197ef', '2020-12-05 08:16:55.573206', '2020-12-05 08:16:55.573206')[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (6.0ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (4.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Create (1.6ms)[0m  [1m[32mINSERT INTO `teachers` (`name`, `created_at`, `updated_at`) VALUES ('田中太郎', '2020-12-05 08:22:09.010685', '2020-12-05 08:22:09.010685')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.9ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 1 LIMIT 1[0m
+  [1m[36mSubject Create (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 1, '2020-12-05 08:22:09.052852', '2020-12-05 08:22:09.052852')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 1 LIMIT 1[0m
+  [1m[36mSubject Create (0.3ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 1, '2020-12-05 08:22:09.057939', '2020-12-05 08:22:09.057939')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 1 LIMIT 1[0m
+  [1m[36mSubject Create (2.5ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 1, '2020-12-05 08:22:09.062017', '2020-12-05 08:22:09.062017')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (5.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (4.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Create (2.7ms)[0m  [1m[32mINSERT INTO `teachers` (`name`, `created_at`, `updated_at`) VALUES ('田中太郎', '2020-12-05 08:49:47.987502', '2020-12-05 08:49:47.987502')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 2 LIMIT 1[0m
+  [1m[36mSubject Create (0.5ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 2, '2020-12-05 08:49:48.021557', '2020-12-05 08:49:48.021557')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 2 LIMIT 1[0m
+  [1m[36mSubject Create (0.3ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 2, '2020-12-05 08:49:48.026816', '2020-12-05 08:49:48.026816')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 2 LIMIT 1[0m
+  [1m[36mSubject Create (0.3ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 2, '2020-12-05 08:49:48.030755', '2020-12-05 08:49:48.030755')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Create (2.3ms)[0m  [1m[32mINSERT INTO `teachers` (`name`, `created_at`, `updated_at`) VALUES ('田中太郎', '2020-12-05 08:51:55.074856', '2020-12-05 08:51:55.074856')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 3 LIMIT 1[0m
+  [1m[36mSubject Create (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 3, '2020-12-05 08:51:55.107409', '2020-12-05 08:51:55.107409')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 3 LIMIT 1[0m
+  [1m[36mSubject Create (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 3, '2020-12-05 08:51:55.110822', '2020-12-05 08:51:55.110822')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 3 LIMIT 1[0m
+  [1m[36mSubject Create (0.3ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 3, '2020-12-05 08:51:55.114172', '2020-12-05 08:51:55.114172')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (4.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (6.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (3.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Create (1.4ms)[0m  [1m[32mINSERT INTO `teachers` (`name`, `created_at`, `updated_at`) VALUES ('田中太郎', '2020-12-05 08:58:47.914337', '2020-12-05 08:58:47.914337')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 4 LIMIT 1[0m
+  [1m[36mSubject Create (0.6ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 4, '2020-12-05 08:58:47.954864', '2020-12-05 08:58:47.954864')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT `teachers`.* FROM `teachers` WHERE `teachers`.`id` = 4 LIMIT 1[0m
+  [1m[36mSubject Create (0.4ms)[0m  [1m[32mINSERT INTO `subjects` (`subject_title`, `weekday`, `period`, `teacher_id`, `created_at`, `updated_at`) VALUES ('心理学', 'monday', 5, 4, '2020-12-05 08:58:47.960988', '2020-12-05 08:58:47.960988')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (3.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
